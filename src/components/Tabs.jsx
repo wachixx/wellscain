@@ -1,6 +1,5 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext} from 'react';
 import { css } from '@emotion/react';
-import {v1 as uuid} from "uuid"; 
 import {Context}  from '../context/Store';
 
 const Tabs = ({ children }) => {

@@ -82,7 +82,6 @@ const TimeseriesChart = () => {
             })
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 var labels = getValues(data.calculated[0].values, "labels");
                 var values = getValues(data.calculated[0].values, "values");
                 setLabels(labels)
@@ -120,6 +119,7 @@ const TimeseriesChart = () => {
         }else{
             setLoading(false);
         }
+        // eslint-disable-next-line
     }, [state.dateRange, state.currentTab]);
     
     return (

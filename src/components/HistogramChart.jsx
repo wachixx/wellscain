@@ -105,6 +105,7 @@ const HistogramChart = () => {
         }else{
             setLoading(false);
         }
+        // eslint-disable-next-line
     }, [state.dateRange, state.currentTab]);
     
     return (
