@@ -84,6 +84,7 @@ const TimeseriesChart = () => {
             .then(data => {
                 var labels = getValues(data.calculated[0].values, "labels");
                 var values = getValues(data.calculated[0].values, "values");
+                console.log(values);
                 setLabels(labels)
                 setChartData(values)
                 const arrAvg = (values.reduce((a,b) => a + b, 0) / values.length) || 0;
@@ -107,7 +108,7 @@ const TimeseriesChart = () => {
                values.push(DateFormatter(value));
             }else{
                const value = item.values[0];
-               values.push(value);
+               values.push(parseFloat(value));
             }
         })
         return values;

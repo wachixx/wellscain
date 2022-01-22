@@ -44,7 +44,7 @@ const HistogramChart = () => {
             label: state.currentTab || "No Metric",
             data: chartData,
             fill: true,
-            backgroundColor: ["rgba(0,10,220,0.5)","rgba(220,0,10,0.5)","rgba(220,0,0,0.5)","rgba(120,250,120,0.5)" ],
+            backgroundColor: ["rgba(0,10,220,0.5)","rgba(100,250,120,1)","rgba(220,0,0,0.5)","rgba(120,250,120,0.5)" ],
           }
         ]
     };
@@ -94,7 +94,7 @@ const HistogramChart = () => {
         let chartValues = [];
         data.forEach(item => {
             let value = item.values.reduce((n, {values}) => n + values[0], 0);
-            chartValues.push(value);
+            chartValues.push(parseFloat(value));
         });
         return chartValues;
     }
