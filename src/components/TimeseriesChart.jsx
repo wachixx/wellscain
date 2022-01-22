@@ -82,15 +82,7 @@ const TimeseriesChart = () => {
             })
             .then(response => response.json())
             .then(data => {
-                var labels = getValues(data.calculated[0].values, "labels");
-                var values = getValues(data.calculated[0].values, "values");
-                console.log(values);
-                setLabels(labels)
-                setChartData(values)
-                const arrAvg = (values.reduce((a,b) => a + b, 0) / values.length) || 0;
-
-                dispatch({type:"SET",key:"kpiAverage", payload: arrAvg});
-                setAverages(Array(labels.length).fill(arrAvg));
+                getValues(data.calculated[0].values);
                 setLoading(false);
             }).
             catch(err => {
@@ -100,18 +92,24 @@ const TimeseriesChart = () => {
         
     }
 
-    const getValues = (data, valueType) => {
+    const getValues = (data) => {
         const values = [];
+        const labels = [];
         data.forEach(function(item){
-            if (valueType === "labels"){
-               const value = item.date;
-               values.push(DateFormatter(value));
-            }else{
-               const value = item.values[0];
-               values.push(parseFloat(value));
+            for (var propName in item) {
+                if(propName === "date"){
+                    labels.push(DateFormatter(item["date"]));
+                }else{
+                    values.push(parseFloat(item.values[0]));
+                }
             }
         })
-        return values;
+        const arrAvg = (values.reduce((a,b) => a + b, 0) / values.length) || 0;
+        dispatch({type:"SET",key:"kpiAverage", payload: arrAvg});
+        setAverages(Array(labels.length).fill(arrAvg));
+
+        setLabels(labels)
+        setChartData(values)
     }
 
     useEffect(()=>{
