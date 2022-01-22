@@ -1,5 +1,10 @@
-FROM node:15.13-alpine
+FROM node:15.13-alpine AS development
+ENV NODE_ENV development
 WORKDIR /athenian
-ENV PATH="./node_modules/.bin:$PATH"
+COPY package.json .
+COPY package-lock.json .
+RUN npm install
 COPY . .
-RUN npm run build
+EXPOSE 3000
+# Start the app
+CMD [ "npm", "start" ]
