@@ -48,14 +48,14 @@ const TimeseriesChart = () => {
             label: state.currentTab || "No Metric",
             data: chartData,
             fill: true,
-            backgroundColor: "orange",
+            backgroundColor: "rgba(120,250,120,0.5)",
             borderColor: "green"
           },
           {
             label: "Averages",
             data: averages,
             fill: false,
-            borderColor: "#742774",
+            borderColor: "rgba(220,0,0,0.5)",
             borderDash: [15, 2],
           }
         ]

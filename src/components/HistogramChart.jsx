@@ -44,10 +44,18 @@ const HistogramChart = () => {
             label: state.currentTab || "No Metric",
             data: chartData,
             fill: true,
-            backgroundColor: "orange"
+            backgroundColor: ["rgba(0,10,220,0.5)","rgba(220,0,10,0.5)","rgba(220,0,0,0.5)","rgba(120,250,120,0.5)" ],
           }
         ]
     };
+
+    const options = {
+        plugins: {
+          legend: {
+            display: false,
+          },
+        },
+      };
 
     const fetchData = () =>{
         setLoading (true);
@@ -110,7 +118,7 @@ const HistogramChart = () => {
     
     return (
         <div css={chartStyle}>
-            {loading ? <div className="loadingContainer"><p>Loading..</p></div> : <Bar data={data}/>}
+            {loading ? <div className="loadingContainer"><p>Loading..</p></div> : <Bar data={data} options={options}/>}
         </div>
     )
 }
